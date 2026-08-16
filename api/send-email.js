@@ -1,7 +1,11 @@
 const nodemailer = require('nodemailer');
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://amitdhakar218.github.io');
+  // Allow both with and without /amit-portfolio path
+  const origin = req.headers.origin || '';
+  if (origin.includes('amitdhakar218.github.io')) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
